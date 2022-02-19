@@ -1,0 +1,28 @@
+<div class="modal-container">
+
+  <div class="modal-wrapper">
+
+    <div class="modal-header">
+      <div id="title">
+        <h1>{{configuration.title}}</h1>
+      </div>
+      <div>
+        <button id="close-btn" (click)="closeMe()">X</button>
+      </div>
+    </div>
+
+    <div class="modal-body" [ngStyle]="getBodyConfigurationBackgroundColor()">
+      <p>{{configuration.bodyText}}</p>
+    </div>
+
+    <div class="modal-footer">
+      <button style="background-color: #aaaaaa" (click)="closeMe()">
+        CANCEL
+      </button>
+      <button style="background-color: #489b51; color: #fff" (click)="closeMe()">
+        OK
+      </button>
+    </div>
+
+  </div>
+</div>

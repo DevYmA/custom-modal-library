@@ -1,0 +1,168 @@
+{
+  "$schema": "./node_modules/@angular/cli/lib/config/schema.json",
+  "version": 1,
+  "newProjectRoot": "projects",
+  "projects": {
+    "custome-modal": {
+      "projectType": "library",
+      "root": "projects/custome-modal",
+      "sourceRoot": "projects/custome-modal/src",
+      "prefix": "lib",
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-angular:ng-packagr",
+          "options": {
+            "tsConfig": "projects/custome-modal/tsconfig.lib.json",
+            "project": "projects/custome-modal/ng-package.json"
+          },
+          "configurations": {
+            "production": {
+              "tsConfig": "projects/custome-modal/tsconfig.lib.prod.json"
+            }
+          }
+        },
+        "test": {
+          "builder": "@angular-devkit/build-angular:karma",
+          "options": {
+            "main": "projects/custome-modal/src/test.ts",
+            "tsConfig": "projects/custome-modal/tsconfig.spec.json",
+            "karmaConfig": "projects/custome-modal/karma.conf.js"
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "projects/custome-modal/tsconfig.lib.json",
+              "projects/custome-modal/tsconfig.spec.json"
+            ],
+            "exclude": [
+              "**/node_modules/**"
+            ]
+          }
+        }
+      }
+    },
+    "modal-test-app": {
+      "projectType": "application",
+      "schematics": {
+        "@schematics/angular:component": {
+          "style": "scss"
+        }
+      },
+      "root": "projects/modal-test-app",
+      "sourceRoot": "projects/modal-test-app/src",
+      "prefix": "app",
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-angular:browser",
+          "options": {
+            "outputPath": "dist/modal-test-app",
+            "index": "projects/modal-test-app/src/index.html",
+            "main": "projects/modal-test-app/src/main.ts",
+            "polyfills": "projects/modal-test-app/src/polyfills.ts",
+            "tsConfig": "projects/modal-test-app/tsconfig.app.json",
+            "aot": true,
+            "assets": [
+              "projects/modal-test-app/src/favicon.ico",
+              "projects/modal-test-app/src/assets"
+            ],
+            "styles": [
+              "projects/modal-test-app/src/styles.scss"
+            ],
+            "scripts": []
+          },
+          "configurations": {
+            "production": {
+              "fileReplacements": [
+                {
+                  "replace": "projects/modal-test-app/src/environments/environment.ts",
+                  "with": "projects/modal-test-app/src/environments/environment.prod.ts"
+                }
+              ],
+              "optimization": true,
+              "outputHashing": "all",
+              "sourceMap": false,
+              "namedChunks": false,
+              "extractLicenses": true,
+              "vendorChunk": false,
+              "buildOptimizer": true,
+              "budgets": [
+                {
+                  "type": "initial",
+                  "maximumWarning": "2mb",
+                  "maximumError": "5mb"
+                },
+                {
+                  "type": "anyComponentStyle",
+                  "maximumWarning": "6kb",
+                  "maximumError": "10kb"
+                }
+              ]
+            }
+          }
+        },
+        "serve": {
+          "builder": "@angular-devkit/build-angular:dev-server",
+          "options": {
+            "browserTarget": "modal-test-app:build"
+          },
+          "configurations": {
+            "production": {
+              "browserTarget": "modal-test-app:build:production"
+            }
+          }
+        },
+        "extract-i18n": {
+          "builder": "@angular-devkit/build-angular:extract-i18n",
+          "options": {
+            "browserTarget": "modal-test-app:build"
+          }
+        },
+        "test": {
+          "builder": "@angular-devkit/build-angular:karma",
+          "options": {
+            "main": "projects/modal-test-app/src/test.ts",
+            "polyfills": "projects/modal-test-app/src/polyfills.ts",
+            "tsConfig": "projects/modal-test-app/tsconfig.spec.json",
+            "karmaConfig": "projects/modal-test-app/karma.conf.js",
+            "assets": [
+              "projects/modal-test-app/src/favicon.ico",
+              "projects/modal-test-app/src/assets"
+            ],
+            "styles": [
+              "projects/modal-test-app/src/styles.scss"
+            ],
+            "scripts": []
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "projects/modal-test-app/tsconfig.app.json",
+              "projects/modal-test-app/tsconfig.spec.json",
+              "projects/modal-test-app/e2e/tsconfig.json"
+            ],
+            "exclude": [
+              "**/node_modules/**"
+            ]
+          }
+        },
+        "e2e": {
+          "builder": "@angular-devkit/build-angular:protractor",
+          "options": {
+            "protractorConfig": "projects/modal-test-app/e2e/protractor.conf.js",
+            "devServerTarget": "modal-test-app:serve"
+          },
+          "configurations": {
+            "production": {
+              "devServerTarget": "modal-test-app:serve:production"
+            }
+          }
+        }
+      }
+    }
+  },
+  "defaultProject": "custome-modal"
+}
