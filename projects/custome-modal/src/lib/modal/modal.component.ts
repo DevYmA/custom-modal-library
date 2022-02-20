@@ -7,7 +7,7 @@ import { ModalConfiguration } from '../data-model/modal-configuration.model';
   styleUrls: ['./modal.component.scss'],
   encapsulation: ViewEncapsulation.None,
 })
-export class ModalComponent {
+export class ModalComponent implements OnInit {
 
   @Input() configuration: ModalConfiguration;
 
@@ -17,7 +17,11 @@ export class ModalComponent {
 
   customStyles: Record<string, string> = {};
 
-  getBodyConfigurationBackgroundColor() {
+  ngOnInit(): void {
+    this.autoClose();
+  }
+
+  getBodyConfigurationBackgroundColor(): Record<string, string> {
     let {
       width,
       height,
@@ -31,8 +35,17 @@ export class ModalComponent {
 
   }
 
-  closeMe() {
+  closeMe(): void {
     this.closeMeEvent.emit(this.configuration.modelKey);
   }
+
+  autoClose(): void {
+    if (this.configuration.closeAfter) {
+      setTimeout(() => {
+        this.closeMe();
+      }, this.configuration.closeAfter);
+    }
+  }
+
 
 }

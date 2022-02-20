@@ -8,4 +8,5 @@ export interface ModalConfiguration {
     width?: string;
     height?: string;
     backgroundColor?:string;
+    closeAfter?:number
 }

@@ -24,7 +24,8 @@ export class AppComponent {
       height: '500px',
       width: '500px',
       backgroundColor: '#f00',
-      bodyText: 'one works!'
+      bodyText: 'one works!',
+      closeAfter: 2000
     }).subscribe((res) => {
 
     });
@@ -36,7 +37,8 @@ export class AppComponent {
       height: '50px',
       width: '200px',
       backgroundColor: '#eeeeee',
-      bodyText: 'two works!'
+      bodyText: 'two works!',
+      closeAfter: 1000
     }).subscribe((res) => {
 
     });
