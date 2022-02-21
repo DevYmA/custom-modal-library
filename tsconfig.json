@@ -4,9 +4,9 @@
   "compilerOptions": {
     "baseUrl": "./",
     "paths": {
-      "custome-modal": [
-        "dist/custome-modal/custome-modal",
-        "dist/custome-modal"
+      "custom-modal": [
+        "dist/custom-modal/custom-modal",
+        "dist/custom-modal"
       ]
     },
     "outDir": "./dist/out-tsc",

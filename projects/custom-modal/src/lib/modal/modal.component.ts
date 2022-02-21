@@ -11,8 +11,8 @@ export class ModalComponent implements OnInit {
 
   @Input() configuration: ModalConfiguration;
 
-  @Output() closeMeEvent = new EventEmitter();
-  @Output() confirmEvent = new EventEmitter();
+  @Output() closeEvent = new EventEmitter();
+  @Output() okEvent = new EventEmitter();
 
 
   customStyles: Record<string, string> = {};
@@ -35,16 +35,20 @@ export class ModalComponent implements OnInit {
 
   }
 
-  closeMe(): void {
-    this.closeMeEvent.emit(this.configuration.modelKey);
+  onClose(): void {
+    this.closeEvent.emit(this.configuration.modelKey);
   }
 
   autoClose(): void {
     if (this.configuration.closeAfter) {
       setTimeout(() => {
-        this.closeMe();
+        this.onClose();
       }, this.configuration.closeAfter);
     }
+  }
+
+  onOk() {
+    this.okEvent.emit(this.configuration.modelKey);
   }
 
 

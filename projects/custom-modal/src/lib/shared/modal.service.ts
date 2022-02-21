@@ -9,7 +9,7 @@ import { ModalConfiguration } from '../data-model/modal-configuration.model';
 })
 export class ModalService {
 
-  private componentSubcriber: Subject<string> = new Subject<string>();;
+
   myMap = new Map<string, any>();
 
   constructor(
@@ -19,32 +19,42 @@ export class ModalService {
   openModel(configuration: ModalConfiguration): Observable<string> {
 
     let modelKey = configuration.modelKey ? configuration.modelKey : uuidv4();
-    if (!this.myMap.get(modelKey)) {
-      
+    let existRef = this.myMap.get(modelKey);
+    if (!existRef) {
+
       let factory = this.resolver.resolveComponentFactory(ModalComponent);
       let componentRef: ComponentRef<ModalComponent> = configuration.viewContainerRef.createComponent(factory);
-      
+
       configuration.modelKey = modelKey;
       componentRef.instance.configuration = configuration;
 
-      componentRef.instance.closeMeEvent.subscribe((val) => this.closeModal(val));
-      // componentRef.instance.confirmEvent.subscribe(() => this.confirm());
+      componentRef.instance.closeEvent.subscribe((key) => this.closeModal(key));
+      componentRef.instance.okEvent.subscribe((key) => this.confirm(key));
 
-      this.myMap.set(modelKey, componentRef);
+      let subcription: Subject<string> = new Subject<string>();
+
+      this.myMap.set(modelKey, {
+        reference: componentRef,
+        eventSubject: subcription
+      });
+      return subcription.asObservable();
     }
 
-    return this.componentSubcriber.asObservable();
+    return existRef.eventSubject.asObservable();;
   }
 
   closeModal(modelKey: string): void {
-    this.componentSubcriber.complete();
-    this.myMap.get(modelKey).destroy();
+
+    let existRef = this.myMap.get(modelKey);
+    existRef.eventSubject.complete();
+    existRef.reference.destroy();
     this.myMap.delete(modelKey);
   }
 
-  // confirm() {
-  //   this.componentSubcriber.next('confirm');
-  //   this.closeModal();
-  // }
+  confirm(modelKey) {
+    let existRef = this.myMap.get(modelKey);
+    existRef.eventSubject.next('done')
+    this.closeModal(modelKey);
+  }
 
 }

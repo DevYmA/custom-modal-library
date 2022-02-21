@@ -7,7 +7,7 @@
         <h1>{{configuration.title}}</h1>
       </div>
       <div>
-        <button id="close-btn" (click)="closeMe()">X</button>
+        <button id="close-btn" (click)="onClose()">X</button>
       </div>
     </div>
 
@@ -16,10 +16,10 @@
     </div>
 
     <div class="modal-footer">
-      <button style="background-color: #aaaaaa" (click)="closeMe()">
+      <button style="background-color: #aaaaaa" (click)="onClose()">
         CANCEL
       </button>
-      <button style="background-color: #489b51; color: #fff" (click)="closeMe()">
+      <button style="background-color: #489b51; color: #fff" (click)="onOk()">
         OK
       </button>
     </div>

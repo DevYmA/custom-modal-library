@@ -4,4 +4,4 @@
 
 export * from './lib/modal/modal.component';
 export * from './lib/shared/modal.service';
-export * from './lib/custome-modal.module';
+export * from './lib/custom-modal.module';

@@ -18,4 +18,4 @@ import { ModalService } from './shared/modal.service';
   exports: [
   ],
 })
-export class CustomeModalModule { }
+export class CustomModalModule { }

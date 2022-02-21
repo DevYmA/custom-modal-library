@@ -1,5 +1,6 @@
 import { Component, ViewContainerRef } from '@angular/core';
-import { ModalService } from 'custome-modal';
+import { ModalService } from 'custom-modal';
+
 
 
 @Component({
@@ -8,8 +9,6 @@ import { ModalService } from 'custome-modal';
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent {
-  title = 'modal-test-app';
-
 
   constructor(
     private modalService: ModalService,
@@ -25,9 +24,9 @@ export class AppComponent {
       width: '500px',
       backgroundColor: '#f00',
       bodyText: 'one works!',
-      closeAfter: 2000
     }).subscribe((res) => {
-
+      console.log("******************");
+      console.log(res);
     });
 
 
@@ -38,9 +37,9 @@ export class AppComponent {
       width: '200px',
       backgroundColor: '#eeeeee',
       bodyText: 'two works!',
-      closeAfter: 1000
     }).subscribe((res) => {
-
+      console.log("******************");
+      console.log(res);
     });
 
   }

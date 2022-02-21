@@ -3,38 +3,38 @@
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
-    "custome-modal": {
+    "custom-modal": {
       "projectType": "library",
-      "root": "projects/custome-modal",
-      "sourceRoot": "projects/custome-modal/src",
+      "root": "projects/custom-modal",
+      "sourceRoot": "projects/custom-modal/src",
       "prefix": "lib",
       "architect": {
         "build": {
           "builder": "@angular-devkit/build-angular:ng-packagr",
           "options": {
-            "tsConfig": "projects/custome-modal/tsconfig.lib.json",
-            "project": "projects/custome-modal/ng-package.json"
+            "tsConfig": "projects/custom-modal/tsconfig.lib.json",
+            "project": "projects/custom-modal/ng-package.json"
           },
           "configurations": {
             "production": {
-              "tsConfig": "projects/custome-modal/tsconfig.lib.prod.json"
+              "tsConfig": "projects/custom-modal/tsconfig.lib.prod.json"
             }
           }
         },
         "test": {
           "builder": "@angular-devkit/build-angular:karma",
           "options": {
-            "main": "projects/custome-modal/src/test.ts",
-            "tsConfig": "projects/custome-modal/tsconfig.spec.json",
-            "karmaConfig": "projects/custome-modal/karma.conf.js"
+            "main": "projects/custom-modal/src/test.ts",
+            "tsConfig": "projects/custom-modal/tsconfig.spec.json",
+            "karmaConfig": "projects/custom-modal/karma.conf.js"
           }
         },
         "lint": {
           "builder": "@angular-devkit/build-angular:tslint",
           "options": {
             "tsConfig": [
-              "projects/custome-modal/tsconfig.lib.json",
-              "projects/custome-modal/tsconfig.spec.json"
+              "projects/custom-modal/tsconfig.lib.json",
+              "projects/custom-modal/tsconfig.spec.json"
             ],
             "exclude": [
               "**/node_modules/**"
@@ -164,5 +164,5 @@
       }
     }
   },
-  "defaultProject": "custome-modal"
+  "defaultProject": "custom-modal"
 }

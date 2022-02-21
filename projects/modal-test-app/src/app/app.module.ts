@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-import { CustomeModalModule, ModalComponent } from 'custome-modal';
+import { CustomModalModule } from 'custom-modal';
+
 
 
 import { AppComponent } from './app.component';
@@ -11,7 +12,7 @@ import { AppComponent } from './app.component';
   ],
   imports: [
     BrowserModule,
-    CustomeModalModule
+    CustomModalModule
   ],
   providers: [],
   bootstrap: [AppComponent]

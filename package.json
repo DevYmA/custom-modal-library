@@ -8,8 +8,8 @@
     "test": "ng test",
     "lint": "ng lint",
     "e2e": "ng e2e",
-    "lib:build": "ng build custome-modal --prod",
-    "lib:publish": "cd dist/custome-modal && npm publish"
+    "lib:build": "ng build custom-modal --prod",
+    "lib:publish": "cd dist/custom-modal && npm publish"
   },
   "private": true,
   "dependencies": {
